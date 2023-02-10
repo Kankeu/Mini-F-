@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    MathJax.Hub.Config({"HTML-CSS": { scale: 80 }});
+    MathJax.Hub.Config({jax: ["input/TeX","output/HTML-CSS"],displayAlign: "center"});
+  </script>
+  <script type="text/javascript"
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="stylesInterface.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "350px";
+      document.getElementById("container").style.marginLeft = "350px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0"
+      document.getElementById("container").style.marginLeft = "0";
+    }
+    function openNav2() {
+      document.getElementById("mySidenav2").style.width = "400px";
+      document.getElementById("container").style.marginLeft = "400px";
+    }
+
+    function closeNav2() {
+      document.getElementById("mySidenav2").style.width = "0"
+      document.getElementById("container").style.marginLeft = "0";
+    }
+
+  </script>
+  <style>
+    body {
+      font-family: "Lato", sans-serif;
+    }
+
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: rgb(245, 245, 245);
+      overflow: scroll;
+      transition: 0.5s;
+      padding-top: 15px;
+      border-radius: 10px;
+    }
+
+    .sidenav::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .sidenav {
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
+    }
+
+    .sidenav a {
+      text-decoration: none;
+      font-size: 25px;
+      color: red;
+      display: block;
+      transition: 0.3s;
+    }
+    
+
+
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 0px;
+      font-size: 45px;
+      margin-left: 50px;
+
+
+    }
+
+    
+    #container {
+      transition: margin-left .5s;
+      padding: 16px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {
+        padding-top: 15px;
+      }
+
+      .sidenav a {
+        font-size: 18px;
+      }
+    }
+  </style>
+
+  <style>
+    .titel {
+    
+      
+    background: rgb(96, 93, 255);
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      padding: .2em 1em; 
+      font-size: 2em ;
+      border-radius: 5em;
+      font-weight: bold;
+      top: -15px;
+      right: 10px;
+      position: fixed;
+      animation: myanimation 10s infinite;
+      box-shadow: 2px 2px 4px   #00000077;
+  
+   }
+   /*
+   @keyframes myanimation {
+    0% {background-color: rgb(106, 5, 248);}
+    25%{background-color:rgb(9, 166, 250);}
+    50%{background-color:rgb(106, 5, 248);}
+    75%{background-color:rgb(9, 166, 250);}
+    100% {background-color: rgb(106, 5, 248);}
+    }
+    */
+
+
+
+
+    .collapsible {
+      background-color: rgb(9, 166, 250);
+      color: white;
+      cursor: pointer;
+      padding: 18px;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 17px;
+      width: 100%;
+      min-width: 320px;
+      border-radius: 5px;
+      margin-left: 4px;
+
+    }
+
+    .active,
+    .collapsible:hover {
+      background-color: rgb(106, 5, 248);
+    }
+
+    .content ul li a {
+      display: block;
+      padding: 0.1px 8px;
+      border-bottom: 1px solid #a7a5a5;
+      position: relative;
+      font-size: 15px;
+      text-align: center;
+      width: 100%;
+      border-radius: .3em;
+    }
+
+    .content ul li a:hover {
+      background-color: aliceblue;
+      color: aliceblue;
+    }
+
+
+    .content ul li a:active {
+      border-bottom-style: none;
+      width: 100%;
+    }
+
+    .content {
+      overflow: hidden;
+      background-color: #f1f1f1;
+      width: 100%;
+      border-bottom-style: none;
+    }
+
+    h2.stat {
+      background: rgb(106, 5, 248);
+        margin-top: 50px;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        padding: .5em .5em; 
+        font-size: 2em ;
+        border-radius: .5em;
+        font-weight: bolder;
+        margin-left: 4px;
+        box-shadow: 4px 4px 8px #00000077;
+  
+    }
+    h2.dyn{
+      
+      background: rgb(106, 5, 248);
+        margin-top: 50px;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        padding: .5em .3em; 
+        font-size: 2em ;
+        border-radius: .5em;
+        font-weight: bolder;
+        margin-left: 4px;
+        box-shadow: 4px 4px 8px #00000077;
+        
+        
+    }
+  </style>
+
+  <style>
+    .m-type {
+      color: #6fa8e0;
+      font-weight: bold;
+    }
+
+    .m-keyword {
+      color: #3b6cf0;
+      font-weight: bold;
+    }
+
+    .m-icon {
+      font-size: 15px;
+    }
+
+    .m-error {
+      border: 1px solid red;
+    }
+
+    .m-stmt {}
+
+    .m-stmt-empty {
+      border: 1px solid blue;
+      width: 150px;
+      height: 30px;
+      display: block
+    }
+
+    #toggleDynamisch {
+      display: none;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      border-radius: 5em;
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+      
+    }
+
+    .slider:before {
+      border-radius: 5em;
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+
+      
+    }
+
+    input:checked+.slider {
+      background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    #container {
+      position: sticky;
+      top: 0;
+      border: none;
+      background: transparent;
+      min-width: 600px;
+      min-height: 60vh;
+    }
+
+    #static_rules>div {
+      width: 100%
+    }
+
+    #dynamic_rules>div {
+      width: 100%
+    }
+
+    #static_rules>button {
+      width: 100%
+    }
+
+    #dynamic_rules>button {
+      width: 100%
+    }
+
+    .code_input{
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 17px;
+      width: 500px;
+      height: 50px;
+      box-shadow: 2px 2px 4px#00000077;
+
+      
+
+    }
+
+    .m-button {
+      background-color: #3b6cf085;
+      /* Green */
+      border: none;
+      color: white;
+      padding: 7px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 25px;
+      font-weight: bold;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+      
+    }
+    .m-button:hover{
+      background-color: #3b6bf0;
+
+    }
+    
+
+    .m-button:active {
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .mid-titel{
+      color: rgb(0, 0, 0);
+      font-size: 0.7cm;
+      
+      font-weight: bolder;
+      margin-top: 10px;
+      margin-left: 5px;
+      
+
+    }
+    .check_symbol_good{
+      font-size: 30px;
+      
+    }
+    .check_symbol_bad{
+      font-size: 30px;
+    }
+    .loader {
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid #3498db;
+    width: 40px;
+    height: 40px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+  @-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+  }
+
+  @keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+  }
+  .reload {
+    background-color: #3b6bf0;
+      border: none;
+      color: white;
+      padding: 2px 5px;      
+      font-size: 20px;
+      font-weight: bolder;
+      border-radius: 10cm;
+      
+      box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+        
+
+  
+  }
+  .reload_button{
+    background-color: #3b6cf085;
+      border: none;
+      color: white;
+      padding: 7px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 25px;
+      font-weight: bold;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+        
+    
+  }
+  .reload_button:hover{
+    background-color: #3b6bf0;
+  }
+  .tree{
+    font-size: 30px;
+  }
+
+  hr{
+      margin-top: 10px;
+      margin-bottom: 10px;
+      height: 2px;
+      background: black
+    }
+  </style>
+</head>
+
+<body style="display: fixed;">
+  <div><h1 class="titel">Proof Tree <span class=tree>&#127794;</span></h1> </div>
+  <div id="rules" style="max-width: 100%"></div>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div id="static_rules">
+      <h2 class="stat">Statische Semantik</h2>
+
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <button class="collapsible" data-toggle="collapse" data-parent="#accordion" href="#Axiome1">Natürliche Zahlen</button>
+          <div id="Axiome1" class="content collapse">
+            <ul>
+              <div id="axiomDiv">
+                <ul id="axiomDivElements">
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </div>
+
+          <div class="panel panel-default">
+            <button class="collapsible" data-toggle="collapse" data-parent="#accordion" href="#booleanValues">Boolesche Werte</button>
+            <div id="booleanValues" class="content collapse">
+              <ul>
+                <div id="booleanValuesDiv">
+                  <ul id="booleanValuesDivElements">
+                  </ul>
+                </div>
+              </ul>
+            </div>
+          </div>
+
+        <div class="panel panel-default">
+          <button class="collapsible" data-toggle="collapse" data-parent="#accordion"
+            href="#Signatur1">Signatur</button>
+          <div id="Signatur1" class="content collapse">
+            <ul>
+              <div id="signaturDiv">
+                <ul id="signaturDivElements">
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </div>
+
+
+
+        <div class="panel panel-default">
+          <button class="collapsible" data-toggle="collapse" data-parent="#accordion"
+            href="#Rekursive1">Rekursive</button>
+          <div id="Rekursive1" class="content collapse">
+            <ul>
+              <div id="rekursiveDiv">
+                <ul id="rekursiveDivElements">
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </div>
+
+
+
+        <div class="panel panel-default">
+          <button class="collapsible" data-toggle="collapse" data-parent="#accordion"
+            href="#Referenz1">Referenz</button>
+          <div id="Referenz1" class="content collapse">
+            <ul>
+              <div id="referenzDiv">
+                <ul id="referenzDivElements">
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </div>
+
+
+
+        <div class="panel panel-default">
+          <button class="collapsible" data-toggle="collapse" data-parent="#accordion"
+            href="#Function1">Function</button>
+          <div id="Function1" class="content collapse">
+            <ul>
+              <div id="funktionDiv">
+                <ul id="funktionDivElements">
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  </div>
+
+  <span id="toggleStatisch" style="font-size:30px;cursor:pointer; width: 25px; " onclick="openNav()">&#9776; </span>
+  <span id="toggleDynamisch" style="font-size:30px;cursor:pointer; width: 25px; " onclick="openNav2()">&#9776; </span>
+
+
+
+  <div id="mySidenav2" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
+
+    <div id="dynamic_rules">
+      <h2 class="dyn">Dynamische Semantik</h2>
+      <div class="panel-group" id="accordion1">
+          <div class="panel panel-default">
+          <button class="collapsible" data-toggle="collapse" data-parent="#accordion1" href="#Axiome2">Natürliche Zahlen</button>
+          <div id="Axiome2" class="content collapse">
+            <ul>
+              <div id="axiomDiv">
+                <ul id="axiomDivElements2">
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </div>
+
+          <div class="panel panel-default">
+            <button class="collapsible" data-toggle="collapse" data-parent="#accordion" href="#booleanValues2">Boolesche Werte</button>
+            <div id="booleanValues2" class="content collapse">
+              <ul>
+                <div id="booleanValuesDiv_dynDiv">
+                  <ul id="booleanValuesDivElements_dyn">
+                  </ul>
+                </div>
+              </ul>
+            </div>
+           </div>
+    
+        <div class="panel panel-default">
+          <button class="collapsible" data-toggle="collapse" data-parent="#accordion1"
+            href="#Umgebung2">Umgebung</button>
+          <div id="Umgebung2" class="content collapse">
+            <ul>
+              <div id="umgebungDiv">
+                <ul id="umgebungDivElements">
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <button class="collapsible" data-toggle="collapse" data-parent="#accordion1"
+            href="#Rekursive2">Rekursive</button>
+          <div id="Rekursive2" class="content collapse">
+            <ul>
+              <div id="rekursiveDiv_dynDiv">
+                <ul id="rekursiveDiv_dynDivElements">
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <button class="collapsible" data-toggle="collapse" data-parent="#accordion1"
+            href="#Referenz2">Referenz</button>
+          <div id="Referenz2" class="content collapse">
+            <ul>
+              <div id="referenzDiv_dyn">
+                <ul id="referenzDivElements_dyn">
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <button class="collapsible" data-toggle="collapse" data-parent="#accordion1"
+            href="#Function2">Function</button>
+          <div id="Function2" class="content collapse">
+            <ul>
+              <div id="funktionDiv_dyn">
+                <ul id="funktionDivElements_dyn">
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+
+  <div id="container" style="position: sticky;top:0;border: solid lightgrey;background: transparent ; margin-top: 20px">
+    <div style="display: grid;justify-content: center;align-items: center;flex-direction: column">
+      <div style="display:flex;align-items: center;justify-content: center">
+        <div style="display:flex;align-items: end">
+          <label class="switch">
+            <input id="input-mode" type="checkbox">
+            <span class="slider"></span>
+          </label>
+          &nbsp;
+          <h3 class="mid-titel">Statische Semantik</h3>
+        </div>
+        
+      </div>
+      <div id="content">
+
+      </div>
+    </div>
+    
+
+  </div>
+
+  <div id="container2" style="position:relative ;top:0;background: transparent" >
+    <div style="display:flex;align-items: center;justify-content: center">
+      <textarea class="code_input"type="text" id="code" name="code" placeholder="Dein Mini-F#-Code..."></textarea>
+      &nbsp;
+      <button  style="margin-left: 5px"  id="confirm" class="m-button">Bestätigen</button>
+      <button style="margin-left: 5px" class="reload_button" onClick="window.location.reload();">Aktualisieren <span class=reload>&#x21bb;</span> </button>
+      
+      
+    
+      <!--
+      <span class="check_symbol_good">&#9989; </span>
+      <span class="check_symbol_bad">&#10060;</span>
+      <div class="loader"></div>
+      -->
+    </div>
+  
+  </div>
+  
+   
+  
+
+
+
+  <script src="appInterface.js"></script>
+
+
+</body>
+
+</html>

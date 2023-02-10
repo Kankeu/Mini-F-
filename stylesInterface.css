@@ -1,0 +1,30 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=PT+Sans+Narrow&display=swap');
+
+*{
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'PT Sans Narrow', sans-serif;
+    color: black;
+}
+
+body{
+    background-color: #f5f6fa;
+    overflow-y: scroll;
+}
+
+
+
+.myStyle{
+    display: block !important;
+}
+
+
+
+
+#elements li {
+    list-style-type: none;
+}
